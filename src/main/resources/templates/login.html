@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | SpringOtp</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <div class="auth-layout">
+
+            <!-- Left side: Project introduction -->
+            <section class="brand-section">
+
+                <div class="brand-logo">
+                    <div class="logo-icon">S</div>
+                    <span>SpringOtp</span>
+                </div>
+
+                <h1>Welcome<br>
+                    back to your<br>
+                    <span>secure space.</span>
+                </h1>
+
+                <p class="brand-description">
+                    Sign in with your registered email and password.
+                    We'll send you a one-time password to verify
+                    your login.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Simple and convenient login</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✉</div>
+                        <span>OTP delivered to your email</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">⌁</div>
+                        <span>Powered by Spring Boot</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Right side: Login form -->
+            <section class="auth-card">
+
+                <div class="card-heading">
+                    <h2>Sign in</h2>
+                    <p>Enter your account details to continue.</p>
+                </div>
+
+                <!-- Display login errors -->
+                <p class="alert-error"
+                   th:if="${error}"
+                   th:text="${error}"
+                   role="alert">
+                </p>
+
+                <!-- Display successful registration message -->
+                <p class="alert-success"
+                   th:if="${param.registered}">
+                    Account created successfully! Please sign in.
+                </p>
+
+                <form th:action="@{/login}" method="post">
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+
+                        <input
+                            class="form-control"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <input
+                            class="form-control"
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+                    </div>
+
+                    <button class="btn-primary" type="submit">
+                        Sign In &amp; Get OTP →
+                    </button>
+
+                </form>
+
+                <div class="auth-footer">
+                    Don't have an account?
+                    <a th:href="@{/}">Create an account</a>
+                </div>
+
+                <div class="page-footer">
+                    SpringOtp · Secure Login Experience
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

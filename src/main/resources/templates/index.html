@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | SpringOtp</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <div class="auth-layout">
+
+            <!-- Left side: Project introduction -->
+            <section class="brand-section">
+
+                <div class="brand-logo">
+                    <div class="logo-icon">S</div>
+                    <span>SpringOtp</span>
+                </div>
+
+                <h1>Your account.<br>
+                    Your security.<br>
+                    <span>One step ahead.</span>
+                </h1>
+
+                <p class="brand-description">
+                    Create your account and experience a simple
+                    registration and email OTP verification system
+                    built with Spring Boot.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Simple and easy registration</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✉</div>
+                        <span>Email-based OTP verification</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">⌁</div>
+                        <span>Built using Java and Spring Boot</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Right side: Registration form -->
+            <section class="auth-card">
+
+                <div class="card-heading">
+                    <h2>Create account</h2>
+                    <p>Enter your details to get started.</p>
+                </div>
+
+                <!-- Registration error from Spring Boot -->
+                <p class="alert-error"
+                   th:if="${error}"
+                   th:text="${error}"
+                   role="alert">
+                </p>
+
+                <form th:action="@{/register}" method="post">
+
+                    <div class="form-group">
+                        <label for="name">Full name</label>
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phno">Phone number</label>
+                        <input
+                            class="form-control"
+                            type="tel"
+                            id="phno"
+                            name="phno"
+                            placeholder="Enter your phone number"
+                            autocomplete="tel"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input
+                            class="form-control"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Password</label>
+                        <input
+                            class="form-control"
+                            type="password"
+                            id="pwd"
+                            name="pwd"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            required>
+                    </div>
+
+                    <button class="btn-primary" type="submit">
+                        Create Account →
+                    </button>
+
+                </form>
+
+                <div class="auth-footer">
+                    Already have an account?
+                    <a th:href="@{/login}">Sign in</a>
+                </div>
+
+                <div class="page-footer">
+                    SpringOtp · Registration &amp; Email OTP
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

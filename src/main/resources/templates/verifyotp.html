@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verify OTP | SpringOtp</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <div class="auth-layout">
+
+            <!-- Left side: Verification information -->
+            <section class="brand-section">
+
+                <div class="brand-logo">
+                    <div class="logo-icon">S</div>
+                    <span>SpringOtp</span>
+                </div>
+
+                <h1>One more step<br>
+                    to your <span>account.</span>
+                </h1>
+
+                <p class="brand-description">
+                    Verify your identity using the one-time password
+                    sent to your registered email address.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✉</div>
+                        <span>Check your email inbox</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">⌁</div>
+                        <span>Enter your six-digit code</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <span>Complete your verification</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Right side: OTP verification form -->
+            <section class="auth-card">
+
+                <div class="card-heading">
+                    <h2>Verify your email</h2>
+                    <p>
+                        Enter the six-digit OTP sent to your email.
+                        The code expires after two minutes.
+                    </p>
+                </div>
+
+                <!-- Display verification errors -->
+                <p class="alert-error"
+                   th:if="${error}"
+                   th:text="${error}"
+                   role="alert">
+                </p>
+
+                <form th:action="@{/verifyotp}" method="post">
+
+                    <!-- Preserve the email for the existing controller -->
+                    <input
+                        type="hidden"
+                        name="email"
+                        th:value="${email}">
+
+                    <div class="form-group">
+                        <label for="otp">One-time password (OTP)</label>
+
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="otp"
+                            name="otp"
+                            placeholder="Enter 6-digit OTP"
+                            inputmode="numeric"
+                            pattern="[0-9]{6}"
+                            minlength="6"
+                            maxlength="6"
+                            autocomplete="one-time-code"
+                            aria-describedby="otp-help"
+                            required>
+                    </div>
+
+                    <p id="otp-help"
+                       style="color: #64748b; font-size: 12px; margin: -8px 0 20px;">
+                        Enter the code before it expires.
+                    </p>
+
+                    <button class="btn-primary" type="submit">
+                        Verify OTP →
+                    </button>
+
+                </form>
+
+                <div class="auth-footer">
+                    Having trouble?
+                    <a th:href="@{/login}">Return to login</a>
+                </div>
+
+                <div class="page-footer">
+                    SpringOtp · Email Verification
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
